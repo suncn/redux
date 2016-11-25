@@ -43,8 +43,25 @@ const shouldFetchPosts = (state, reddit) => {
   return posts.didInvalidate
 }
 
+/*
 export const fetchPostsIfNeeded = reddit => (dispatch, getState) => {
   if (shouldFetchPosts(getState(), reddit)) {
     return dispatch(fetchPosts(reddit))
   }
-}
+
+上面等价于1：
+export const fetchPostsIfNeeded = function(reddit){
+    function (dispatch, getState) {
+      if (shouldFetchPosts(getState(), reddit)) {
+        return dispatch(fetchPosts(reddit))
+      }
+    }
+} 
+上面等价于2：*/
+export const fetchPostsIfNeeded = function(reddit){
+    return function (dispatch, getState) {
+      if (shouldFetchPosts(getState(), reddit)) {
+        dispatch(fetchPosts(reddit))
+      }
+    }
+} 

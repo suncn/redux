@@ -3,7 +3,7 @@ import { Component } from 'react'
 import { connect } from 'react-redux'
 import * as actions from '../actions'
 
-export class Node extends Component {
+ class Node extends Component {
   handleIncrementClick = () => {
     const { increment, id } = this.props
     increment(id)

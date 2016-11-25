@@ -29,7 +29,6 @@ const callApi = (endpoint, schema) => {
         if (!response.ok) {
           return Promise.reject(json)
         }
-
         const camelizedJson = camelizeKeys(json)
         const nextPageUrl = getNextPageUrl(response)
 
